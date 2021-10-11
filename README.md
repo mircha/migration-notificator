@@ -1,1 +1,1 @@
-"# migration-notificator" 
+# migration-notificator
