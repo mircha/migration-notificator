@@ -19,6 +19,7 @@ app.post('/webhook/teamsHCNew', function (req, res) {
 });
 app.post('/firebase/:uid', function (req, res) {
     var content = req.body;
+    var uid = req.params.uid
     const admin = require('firebase-admin')
     const acc = require('./assets/mmt-monitor-firebase-adminsdk-t2ec1-63abca1c1f.json')
     admin.initializeApp({
