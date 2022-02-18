@@ -27,7 +27,7 @@ app.post('/firebase/:uid', function (req, res) {
         databaseURL: "https://mmt-monitor-default-rtdb.europe-west1.firebasedatabase.app/"
     })
     var fb = admin.database().ref("migrations/" + uid);
-    fb.set(content).then(() => { console.log('Data updated.'); admin.app().delete(); });
+    fb.set(content).then(() => { console.log('Data updated.'); admin.app().delete(); res.send('ok')});
 });
 function hcNotifications(content) {
     return new Promise(function (resolve, reject) {
