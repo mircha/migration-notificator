@@ -17,6 +17,17 @@ app.post('/webhook/teamsHCNew', function (req, res) {
         res.send(response)
     })
 });
+app.post('/firebase/:uid', function (req, res) {
+    var content = req.body;
+    const admin = require('firebase-admin')
+    const acc = require('./assets/mmt-monitor-firebase-adminsdk-t2ec1-63abca1c1f.json')
+    admin.initializeApp({
+        credential: admin.credential.cert(acc),
+        databaseURL: "https://mmt-monitor-default-rtdb.europe-west1.firebasedatabase.app/"
+    })
+    var fb = admin.database().ref("migrations/" + uid);
+    fb.set(content).then(() => { console.log('Data updated.'); admin.app().delete(); });
+});
 function hcNotifications(content) {
     return new Promise(function (resolve, reject) {
         request.post(`${content.url}`, {
